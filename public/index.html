@@ -14,10 +14,18 @@
       background-color: skyblue;
     }
 
-    .step { display: none; }
-    .step.active { display: block; }
+    .step {
+      display: none;
+    }
 
-    h2 { margin-bottom: 10px; }
+    .step.active {
+      display: block;
+    }
+
+    #intro {
+      text-align: center;
+      padding: 40px 20px;
+    }
 
     .slider-row {
       display: flex;
@@ -48,23 +56,6 @@
       cursor: pointer;
     }
 
-    button {
-      padding: 12px 24px;
-      margin-top: 20px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    #output {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-width: 100%;
-    }
-
     .progress-container {
       margin-top: 30px;
     }
@@ -79,19 +70,31 @@
       height: 10px;
       background-color: #eee;
       border-radius: 5px;
-      overflow: hidden;
+      overflow: visible;
       position: relative;
     }
 
     .progress-thumb {
       position: absolute;
-      top: -6px;
+      top: -45px;
       left: 0;
       transition: left 0.3s ease;
+      width: 80px;
+      height: auto;
+    }
+
+    #output {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
+
   <div id="intro" class="step active">
     <h1>What are you McKFeeling today?</h1>
     <p>This quiz helps you identify your current emotional state using science-backed questions.</p>
@@ -100,7 +103,7 @@
       <li>See where you land on an emotion wheel</li>
       <li>Get a one-word emotion, synonyms, and insight</li>
     </ul>
-    <button style="background: url('Cloud2.png') no-repeat center center; background-size: contain; border: none; color: #000; font-weight: bold; font-size: 1rem; padding: 30px 60px; margin: 5px; cursor: pointer; text-align: center; text-shadow: 0 0 2px #fff;" onclick="startQuiz()">Start Quiz</button>
+    <button style="background: url('Cloud2.png') no-repeat center center; background-size: contain; border: none; color: #000; font-weight: bold; font-size: 1rem; padding: 30px 60px; margin: 20px; cursor: pointer; text-align: center; text-shadow: 0 0 2px #fff;" onclick="startQuiz()">Start Quiz</button>
   </div>
 
   <div id="question" class="step">
@@ -110,13 +113,13 @@
       <input type="range" id="slider" min="1" max="5" value="3" />
       <span class="slider-label"></span>
     </div>
-    <button style="background: url('Cloud2.png') no-repeat center center; background-size: contain; border: none; color: #000; font-weight: bold; font-size: 1rem; padding: 30px 60px; margin: 5px; cursor: pointer; text-align: center; text-shadow: 0 0 2px #fff;" onclick="nextQuestion()">Next</button>
+    <button style="background: url('Cloud2.png') no-repeat center center; background-size: contain; border: none; color: #000; font-weight: bold; font-size: 1rem; padding: 30px 60px; margin: 20px; cursor: pointer; text-align: center; text-shadow: 0 0 2px #fff;" onclick="nextQuestion()">Next</button>
 
     <div class="progress-container">
       <div class="progress-label">Progress:</div>
       <div class="progress-bar">
         <div class="progress-thumb" id="progress-thumb">
-          <img src="Car2.png" alt="car" style="height: 40px; transform: translateY(-15px);" />
+          <img src="Car2.png" alt="car" style="width: 100%; height: auto;" />
         </div>
       </div>
     </div>
@@ -143,7 +146,7 @@
 
     function updateQuestion() {
       const progress = (current / questions.length) * 100;
-      document.getElementById("progress-thumb").style.left = `calc(${progress}% - 10px)`;
+      document.getElementById("progress-thumb").style.left = `calc(${progress}% - 40px)`;
 
       const q = questions[current];
       document.getElementById("question-text").textContent = q.text;
@@ -190,5 +193,6 @@
       document.getElementById("output").classList.add("active");
     }
   </script>
+
 </body>
 </html>
